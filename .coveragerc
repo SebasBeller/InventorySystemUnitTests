@@ -1,0 +1,5 @@
+[run]
+source = Modelo
+omit =
+    Modelo/G*/Gestor*.py
+    Modelo/G*/__init__.py 

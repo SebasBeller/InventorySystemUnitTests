@@ -18,8 +18,8 @@ class Inventario:
         if not cls._instance:
             cls._instance = super().__new__(cls, *args, **kwargs)
             # Inicialización de la instancia del inventario
-        return cls._instance 
-     
+        return cls._instance
+    
     def inicializar_inventario(self):
         producto1 = Aretes("Aretes de plata", "123ABC", "MarcaX", 10, "Plata", "Plateado", "Zirconia", 20)
         producto2 = Collares("Collar de oro", "456DEF", "MarcaY", 5, "Oro", "Dorado", "Diamante", 100)
@@ -93,6 +93,7 @@ class Inventario:
             Producto: Producto encontrado en el catalogo
         '''        
         for producto in self.productos_catalogo:
+
             if producto.get_nombre().lower() == identificador or producto.get_modelo().lower() == identificador:
                 return producto
         return None
