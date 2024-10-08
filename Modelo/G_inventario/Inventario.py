@@ -45,36 +45,36 @@ class Inventario:
 
     def agregar_producto(self, producto):
         # Agrega un producto al inventario o actualiza su stock si ya existe
-        if producto.nombre in self.productos:
-            self.productos[producto.nombre] += producto.stock
+        if producto.nombre in self.productos: # 1
+            self.productos[producto.nombre] += producto.stock # 2
         else:
-            self.productos[producto.nombre] = producto.stock
+            self.productos[producto.nombre] = producto.stock # 3
         # Agregar instancia de producto a la lista para el catalogo
-        self.productos_catalogo.append(producto)
+        self.productos_catalogo.append(producto) # 4
 
     def eliminar_producto(self, nombre_producto):
         # Elimina un producto del inventario si existe, de lo contrario, imprime un mensaje
-        if nombre_producto in self.productos:
+        if nombre_producto in self.productos: # 1
             del self.productos[nombre_producto]
-            print("\nProducto eliminado correctamente.")
+            print("\nProducto eliminado correctamente.") # 2
         else:
-            print("\nEl producto no existe en el inventario.")
+            print("\nEl producto no existe en el inventario.") #3
 
     def buscar_producto(self, nombre_producto):
         # Busca un producto en el inventario y devuelve su nombre y stock si existe, de lo contrario, devuelve un mensaje
-        if nombre_producto in self.productos:
+        if nombre_producto in self.productos: # 1
             mensaje = f"{nombre_producto}: {self.productos[nombre_producto]}"
             print("\nProducto encontrado en el inventario.")
-            return mensaje
+            return mensaje # 2
         else:
-            return "\nProducto no encontrado."
+            return "\nProducto no encontrado." # 3
 
     def actualizar_stock(self, nombre_producto, stock):
         # Actualiza el stock de un producto en el inventario si existe, de lo contrario, imprime un mensaje
-        if nombre_producto in self.productos:
-            self.productos[nombre_producto] += stock
+        if nombre_producto in self.productos: # 1
+            self.productos[nombre_producto] += stock # 2
         else:
-            print("\nEl producto no existe en el inventario.")
+            print("\nEl producto no existe en el inventario.") # 3
 
     def obtener_inventario(self):
         # Devuelve el inventario de productos
@@ -92,9 +92,9 @@ class Inventario:
         Returns:
             Producto: Producto encontrado en el catalogo
         '''        
-        for producto in self.productos_catalogo:
-
-            if (producto.get_nombre().lower() == identificador
-                    or producto.get_modelo().lower() == identificador):
-                return producto
-        return None
+        for producto in self.productos_catalogo: # 1
+            if (producto.get_nombre().lower() == identificador # 2
+                    or producto.get_modelo().lower() == identificador # 3
+            ):
+                return producto # 4
+        return None # 5
