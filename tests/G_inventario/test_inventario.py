@@ -100,3 +100,8 @@ class TestInventario(unittest.TestCase):
             self.inventario.productos = {}
             self.inventario.actualizar_stock("laptop",5)
             mock_print.assert_called_with("\nEl producto no existe en el inventario.")
+
+    def test_obtener_lista_productos_tc1(self):
+            Inventario.inicializar_inventario = MagicMock()
+            self.inventario = Inventario()
+            self.assertIsNotNone(self.inventario.obtener_lista_productos())
