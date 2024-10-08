@@ -1,6 +1,7 @@
 import unittest
 from Modelo.G_inventario.Inventario import Inventario
 from unittest.mock import MagicMock
+from unittest.mock import patch
 class TestInventario(unittest.TestCase):
 
     def test_agregar_tc1(self):
@@ -53,3 +54,20 @@ class TestInventario(unittest.TestCase):
         self.inventario = Inventario()
         resp = self.inventario.obtener_producto("z")
         self.assertIsNone(resp)
+
+    @patch('builtins.print')  # Mockear la función print
+    def test_eliminar_producto_tc1(self, mock_print):
+        Inventario.inicializar_inventario = MagicMock()
+        self.inventario = Inventario()
+        self.inventario.productos = {"X": 0}
+        self.inventario.eliminar_producto("X")
+        self.assertNotIn("X", self.inventario.productos)
+        mock_print.assert_called_with("\nProducto eliminado correctamente.")
+
+    @patch('builtins.print')
+    def test_eliminar_tc2(self,mock_print):
+        Inventario.inicializar_inventario = MagicMock()
+        self.inventario = Inventario()
+        self.inventario.productos = {}
+        self.inventario.eliminar_producto("X")
+        mock_print.assert_called_with("\nEl producto no existe en el inventario.")
