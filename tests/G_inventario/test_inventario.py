@@ -105,3 +105,7 @@ class TestInventario(unittest.TestCase):
             Inventario.inicializar_inventario = MagicMock()
             self.inventario = Inventario()
             self.assertIsNotNone(self.inventario.obtener_lista_productos())
+    def test_obtener_inventario_tc1(self):
+            Inventario.inicializar_inventario = MagicMock()
+            self.inventario = Inventario()
+            self.assertIsNotNone(self.inventario.obtener_inventario())
