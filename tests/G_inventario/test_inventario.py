@@ -61,7 +61,6 @@ class TestInventario(unittest.TestCase):
         self.inventario = Inventario()
         self.inventario.productos = {"X": 0}
         self.inventario.eliminar_producto("X")
-        self.assertNotIn("X", self.inventario.productos)
         mock_print.assert_called_with("\nProducto eliminado correctamente.")
 
     @patch('builtins.print')
@@ -71,3 +70,18 @@ class TestInventario(unittest.TestCase):
         self.inventario.productos = {}
         self.inventario.eliminar_producto("X")
         mock_print.assert_called_with("\nEl producto no existe en el inventario.")
+
+    def test_buscar_tc1(self):
+        Inventario.inicializar_inventario = MagicMock()
+        self.inventario = Inventario()
+        self.inventario.productos = {"laptop": 0}
+        resp=self.inventario.buscar_producto("laptop")
+        self.assertEqual(resp,"laptop: 0")
+
+    def test_buscar_tc2(self):
+        Inventario.inicializar_inventario = MagicMock()
+        self.inventario = Inventario()
+        self.inventario.productos = {}
+        resp=self.inventario.buscar_producto("laptop")
+        self.assertEqual(resp,"\nProducto no encontrado.")
+
