@@ -2,6 +2,7 @@ import unittest
 from Modelo.G_inventario.Inventario import Inventario
 from unittest.mock import MagicMock
 from unittest.mock import patch
+
 class TestInventario(unittest.TestCase):
 
     def test_agregar_tc1(self):
@@ -85,3 +86,17 @@ class TestInventario(unittest.TestCase):
         resp=self.inventario.buscar_producto("laptop")
         self.assertEqual(resp,"\nProducto no encontrado.")
 
+    def test_actualizar_stock_tc1(self):
+            Inventario.inicializar_inventario = MagicMock()
+            self.inventario = Inventario()
+            self.inventario.productos = {"laptop": 0}
+            self.inventario.actualizar_stock("laptop",10)
+            self.assertEqual(self.inventario.productos,{"laptop":10})
+
+    @patch('builtins.print')
+    def test_actualizar_stock_tc2(self,mock_print):
+            Inventario.inicializar_inventario = MagicMock()
+            self.inventario = Inventario()
+            self.inventario.productos = {}
+            self.inventario.actualizar_stock("laptop",5)
+            mock_print.assert_called_with("\nEl producto no existe en el inventario.")
