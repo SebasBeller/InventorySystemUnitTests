@@ -94,6 +94,7 @@ class Inventario:
         '''        
         for producto in self.productos_catalogo:
 
-            if producto.get_nombre().lower() == identificador or producto.get_modelo().lower() == identificador:
+            if (producto.get_nombre().lower() == identificador
+                    or producto.get_modelo().lower() == identificador):
                 return producto
         return None
