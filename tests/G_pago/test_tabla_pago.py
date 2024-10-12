@@ -32,7 +32,7 @@ class TestTablaPago(unittest.TestCase):
         tarjeta=self.sistema_pagos.obtener_tarjetas()
         self.assertEqual(tarjeta, ["Tarjeta existente"])
 
-    def test_obtener_tarjetas_de_pago_existente(self):
+    def test_obtener_tarjetas_de_usuario_sin_pagos(self):
         self.sistema_pagos.session.obtener_id_usuario.return_value = 1
         tarjeta=self.sistema_pagos.obtener_tarjetas()
         self.assertIsNone(tarjeta)
