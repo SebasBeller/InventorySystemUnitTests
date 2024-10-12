@@ -6,6 +6,7 @@ from unittest.mock import MagicMock, patch
 
 
 class testTablaCompra(unittest.TestCase):
+
     @patch('Modelo.G_compra.TablaCompra.TablaCompra.init_test', spec=True)
     def test_agregar_nuevo_ticket_segundo_diccionario(self,mock_init_test):
         TablaCompra.init_test=MagicMock()
@@ -68,7 +69,6 @@ class testTablaCompra(unittest.TestCase):
     @patch('Modelo.G_compra.TablaCompra.TablaCompra.init_test', spec=True)
     def test_obtener_tikect_sin_identificador(self,mock_init_Test):
         self.tabla_compra=TablaCompra()
-
         self.tabla_compra.tickets=[{}]
         result=self.tabla_compra.obtener_tickets()
         self.assertEqual(len(result),0)

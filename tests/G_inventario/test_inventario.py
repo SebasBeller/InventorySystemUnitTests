@@ -4,10 +4,13 @@ from unittest.mock import MagicMock
 from unittest.mock import patch
 
 class TestInventario(unittest.TestCase):
+
     def setUp(self):
         self.inventario = Inventario()
+
     def tearDown(self):
         self.inventario = None
+
     def test_agregar_tc1(self):
         producto=MagicMock()
         producto.nombre="Aretes de plata"
