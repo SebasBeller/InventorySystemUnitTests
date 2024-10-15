@@ -24,7 +24,7 @@ class TestTablaPago(unittest.TestCase):
         self.sistema_pagos._TablaPago__pagos[2] = ["Tarjeta existente"]
         tarjeta = "Tarjeta nueva 5678"
         resultado = self.sistema_pagos.agregar_tarjeta(tarjeta)
-        self.assertEqual(resultado, True)
+        self.assertTrue(resultado)
 
     def test_obtener_tarjetas_de_pago_existente(self):
         self.sistema_pagos.session.obtener_id_usuario.return_value = 2

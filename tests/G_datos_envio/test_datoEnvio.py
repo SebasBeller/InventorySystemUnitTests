@@ -5,6 +5,8 @@ class TestDatoEnvio(unittest.TestCase):
     def setUp(self):
         self.dato_envio=DatoEnvio("Juan","Av.America","Cochabamba","12345","Bolivia")
 
+    def tearDown(self):
+        self.dato_envio=None
 
     def test_get_nombre(self):
 
