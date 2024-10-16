@@ -134,7 +134,7 @@ class TestTablaCatalogo(unittest.TestCase):
         self.assertEqual(resultado, [])
 
     @patch('Modelo.G_catalogo.TablaCatalogo.TablaCatalogo.obtener_productos_inventario')
-    def test_obtener_aretes_del_catalogo_sin_aretes(self, mock_obtener_productos):
+    def test_obtener_productos_del_catalogo_sin_tipo(self, mock_obtener_productos):
         TablaCatalogo.obtener_productos_inventario = mock_obtener_productos
         tabla_catalogo = TablaCatalogo()
         tabla_catalogo.productos_inventario = []
