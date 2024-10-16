@@ -68,3 +68,26 @@ class TestTablaDatosEnvio(unittest.TestCase):
         self.tabla_datos_envio.modificar_dato("nombre", "Nuevo Nombre", 0)
         self.dato_envio_mock.set_nombre.assert_called_once_with("Nuevo Nombre")
 
+    def test_tiene_datos_envio(self):
+        self.tabla_datos_envio.session.obtener_id_usuario.return_value = 1
+        self.assertTrue(self.tabla_datos_envio.tiene_datos_envio())
+
+    def test_no_tiene_datos_envio(self):
+        self.tabla_datos_envio.session.obtener_id_usuario.return_value = 2
+        self.assertFalse(self.tabla_datos_envio.tiene_datos_envio())
+
+    def test_eliminar_dato_envio(self):
+        self.tabla_datos_envio.session.obtener_id_usuario.return_value = 1
+        self.assertTrue(self.tabla_datos_envio.eliminar_dato(0))
+
+    def test_eliminar_dato_envio_con_indice_superior_al_tamanio(self):
+        self.tabla_datos_envio.session.obtener_id_usuario.return_value = 1
+        self.assertFalse(self.tabla_datos_envio.eliminar_dato(5))
+
+    def test_eliminar_dato_envio_con_indice_negativo(self):
+        self.tabla_datos_envio.session.obtener_id_usuario.return_value = 1
+        self.assertFalse(self.tabla_datos_envio.eliminar_dato(-1))
+
+    def test_eliminar_dato_envio_sin_envios_del_usuario(self):
+        self.tabla_datos_envio.session.obtener_id_usuario.return_value = 2
+        self.assertFalse(self.tabla_datos_envio.eliminar_dato(0))
