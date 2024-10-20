@@ -18,7 +18,8 @@ class TablaUsuarios:
     '''
     def validar_credenciales(self, correo, contrasena):
         for usuario in self.usuarios:
-            if usuario.get_correo() == correo and usuario.get_contrasena() == contrasena:
+            if (usuario.get_correo() == correo
+                    and usuario.get_contrasena() == contrasena):
                 return usuario
             
     '''

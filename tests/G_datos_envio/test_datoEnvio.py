@@ -3,7 +3,9 @@ from Modelo.G_datos_envio import DatoEnvio
 class TestDatoEnvio(unittest.TestCase):
 
     def setUp(self):
-        self.dato_envio=DatoEnvio("Juan","Av.America","Cochabamba","12345","Bolivia")
+        self.dato_envio=DatoEnvio("Juan","Av.America",
+                                  "Cochabamba","12345",
+                                  "Bolivia")
 
     def tearDown(self):
         self.dato_envio=None
@@ -72,6 +74,7 @@ class TestDatoEnvio(unittest.TestCase):
             self.dato_envio.set_pais("")
 
     def test_str(self):
-        resultado="Nombre: Juan\n Direccion:Av.America\n Ciudad:Cochabamba\n Codigo Postal:12345\n Pais:Bolivia"
+        resultado=("Nombre: Juan\n Direccion:Av.America\n Ciudad:Cochabamba\n"
+                   " Codigo Postal:12345\n Pais:Bolivia")
         self.assertEqual(str(self.dato_envio),resultado)
 
