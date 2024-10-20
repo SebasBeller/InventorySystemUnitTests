@@ -41,5 +41,5 @@ class GestorCompra:
         id_usuario = self.session.obtener_id_usuario()
         self.tabla.agregar_ticket(ticket, id_usuario)
         # limpiar carrito de compra
-        self.tabla_carritos.eliminar_carrito()
+        self.tabla_carritos.carritos.remove(carrito)
         return True
