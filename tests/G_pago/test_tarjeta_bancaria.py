@@ -2,6 +2,7 @@ import unittest
 from Modelo.G_pago.TarjetaBancaria import TarjetaBancaria
 
 class TestTarjetaBancaria(unittest.TestCase):
+
     def setUp(self):
        self.datosTarjeta=TarjetaBancaria(12345,"11/09/2024",123)
 
