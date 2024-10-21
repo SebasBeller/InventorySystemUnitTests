@@ -11,7 +11,11 @@ class GestorDatosEnvio:
     '''
 
     def verificar_datos_envio(self, nombre, direccion, ciudad, cp, pais):
-        if nombre == "" or direccion == "" or ciudad == "" or cp == "" or pais == "":
+        if (nombre == ""
+                or direccion == ""
+                or ciudad == ""
+                or cp == ""
+                or pais == ""):
             return False
         return True
 
