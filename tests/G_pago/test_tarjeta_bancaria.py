@@ -6,6 +6,9 @@ class TestTarjetaBancaria(unittest.TestCase):
     def setUp(self):
        self.datosTarjeta=TarjetaBancaria(12345,"11/09/2024",123)
 
+    def tearDown(self):
+        self.datosTarjeta=None
+
     def test_getNumero(self):
         self.assertEqual(self.datosTarjeta.get_numero(),12345)
 

@@ -46,7 +46,7 @@ class TestTablaDatosEnvio(unittest.TestCase):
     def test_modificar_con_tipo_dato_invalido(self):
         self.tabla_datos_envio.session.obtener_id_usuario.return_value = 1
         result = self.tabla_datos_envio.modificar_dato("tipo_invalido", "dato", 0)
-        self.assertTrue(result)
+        self.dato_envio_mock.assert_has_calls([])
 
     def test_modificar_cp(self):
         self.tabla_datos_envio.session.obtener_id_usuario.return_value = 1
