@@ -8,9 +8,8 @@ from Modelo.G_inventario.Inventario import  Inventario
 
 class TestTablaCatalogo(unittest.TestCase):
 
-    @classmethod
-    def setUpClass(cls):
-        cls.productos_mock = [
+    def setUp(self):
+        self.productos_mock = [
             MagicMock(spec=Dijes), MagicMock(spec=Pulseras), MagicMock(spec=Piercings),
             MagicMock(spec=Anillos), MagicMock(spec=Collares), MagicMock(spec=Aretes)
         ]
@@ -23,11 +22,10 @@ class TestTablaCatalogo(unittest.TestCase):
         producto.color = "Plateado"
         producto.piedra = "Zafiro"
         producto.precio = 150.00
-        cls.producto = producto
+        self.producto = producto
 
-    @classmethod
-    def tearDownClass(cls):
-        cls.productos_mock = None
+    def tearDown(self):
+        self.productos_mock = None
 
     @patch('Modelo.G_catalogo.TablaCatalogo.TablaCatalogo.obtener_productos_inventario')
     def test_obtener_dijes_del_catalogo(self, mock_obtener_productos):
@@ -70,6 +68,14 @@ class TestTablaCatalogo(unittest.TestCase):
         self.assertEqual(resultado, [])
 
     @patch('Modelo.G_catalogo.TablaCatalogo.TablaCatalogo.obtener_productos_inventario')
+    def test_obtener_piercings_del_catalogo_sin_piercings(self, mock_obtener_productos):
+        TablaCatalogo.obtener_productos_inventario = mock_obtener_productos
+        tabla_catalogo = TablaCatalogo()
+        tabla_catalogo.productos_inventario = [MagicMock()]
+        resultado = tabla_catalogo.obtener_catalogo("Piercings")
+        self.assertEqual(resultado, [])
+
+    @patch('Modelo.G_catalogo.TablaCatalogo.TablaCatalogo.obtener_productos_inventario')
     def test_obtener_piercings_del_catalogo(self, mock_obtener_productos):
         TablaCatalogo.obtener_productos_inventario = mock_obtener_productos
         tabla_catalogo = TablaCatalogo()
@@ -77,12 +83,13 @@ class TestTablaCatalogo(unittest.TestCase):
         resultado = tabla_catalogo.obtener_catalogo("Piercings")
         self.assertEqual(resultado, tabla_catalogo.productos_inventario)
 
+
     @patch('Modelo.G_catalogo.TablaCatalogo.TablaCatalogo.obtener_productos_inventario')
-    def test_obtener_piercings_del_catalogo_sin_piercings(self, mock_obtener_productos):
+    def test_obtener_anillos_del_catalogo_sin_anillos(self, mock_obtener_productos):
         TablaCatalogo.obtener_productos_inventario = mock_obtener_productos
         tabla_catalogo = TablaCatalogo()
         tabla_catalogo.productos_inventario = [MagicMock()]
-        resultado = tabla_catalogo.obtener_catalogo("Piercings")
+        resultado = tabla_catalogo.obtener_catalogo("Anillos")
         self.assertEqual(resultado, [])
 
     @patch('Modelo.G_catalogo.TablaCatalogo.TablaCatalogo.obtener_productos_inventario')
@@ -93,12 +100,13 @@ class TestTablaCatalogo(unittest.TestCase):
         resultado = tabla_catalogo.obtener_catalogo("Anillos")
         self.assertEqual(resultado, tabla_catalogo.productos_inventario)
 
+
     @patch('Modelo.G_catalogo.TablaCatalogo.TablaCatalogo.obtener_productos_inventario')
-    def test_obtener_anillos_del_catalogo_sin_anillos(self, mock_obtener_productos):
+    def test_obtener_collares_del_catalogo_sin_collares(self, mock_obtener_productos):
         TablaCatalogo.obtener_productos_inventario = mock_obtener_productos
         tabla_catalogo = TablaCatalogo()
         tabla_catalogo.productos_inventario = [MagicMock()]
-        resultado = tabla_catalogo.obtener_catalogo("Anillos")
+        resultado = tabla_catalogo.obtener_catalogo("Collares")
         self.assertEqual(resultado, [])
 
     @patch('Modelo.G_catalogo.TablaCatalogo.TablaCatalogo.obtener_productos_inventario')
@@ -110,11 +118,11 @@ class TestTablaCatalogo(unittest.TestCase):
         self.assertEqual(resultado, tabla_catalogo.productos_inventario)
 
     @patch('Modelo.G_catalogo.TablaCatalogo.TablaCatalogo.obtener_productos_inventario')
-    def test_obtener_collares_del_catalogo_sin_collares(self, mock_obtener_productos):
+    def test_obtener_aretes_del_catalogo_sin_aretes(self, mock_obtener_productos):
         TablaCatalogo.obtener_productos_inventario = mock_obtener_productos
         tabla_catalogo = TablaCatalogo()
         tabla_catalogo.productos_inventario = [MagicMock()]
-        resultado = tabla_catalogo.obtener_catalogo("Collares")
+        resultado = tabla_catalogo.obtener_catalogo("Aretes")
         self.assertEqual(resultado, [])
 
     @patch('Modelo.G_catalogo.TablaCatalogo.TablaCatalogo.obtener_productos_inventario')
@@ -125,13 +133,6 @@ class TestTablaCatalogo(unittest.TestCase):
         resultado = tabla_catalogo.obtener_catalogo("Aretes")
         self.assertEqual(resultado, tabla_catalogo.productos_inventario)
 
-    @patch('Modelo.G_catalogo.TablaCatalogo.TablaCatalogo.obtener_productos_inventario')
-    def test_obtener_aretes_del_catalogo_sin_aretes(self, mock_obtener_productos):
-        TablaCatalogo.obtener_productos_inventario = mock_obtener_productos
-        tabla_catalogo = TablaCatalogo()
-        tabla_catalogo.productos_inventario = [MagicMock()]
-        resultado = tabla_catalogo.obtener_catalogo("Aretes")
-        self.assertEqual(resultado, [])
 
     @patch('Modelo.G_catalogo.TablaCatalogo.TablaCatalogo.obtener_productos_inventario')
     def test_obtener_productos_del_catalogo_sin_tipo(self, mock_obtener_productos):
