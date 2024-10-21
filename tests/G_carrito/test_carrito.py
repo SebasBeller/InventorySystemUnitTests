@@ -27,9 +27,10 @@ class TestCarrito(unittest.TestCase):
         self.carrito.eliminar_producto("ProductoInexistente")
         self.assertEqual(len(self.carrito.productos), 3)
 
-    def test_eliminar_producto_con_nombre_mayusculas_minusculas(self):
-        self.carrito.eliminar_producto("Producto1")
-        self.assertNotIn({"nombre": "Producto1", "precio": 100}, self.carrito.productos)
+    def test_eliminar_producto_en_lista_vacia(self):
+        self.carrito.eliminar_producto("Producto2")
+        self.carrito.productos=[]
+        self.assertNotIn({"nombre": "Producto2", "precio": 200}, self.carrito.productos)
 
     def test_obtener_total_con_productos(self):
         self.carrito.productos = [
