@@ -32,6 +32,10 @@ class TablaCatalogo():
     def buscar_producto(self, dato):
         productos = []
         for producto in self.productos_inventario:
-            if producto.get_nombre().lower() == dato.lower() or producto.get_marca().lower() == dato.lower() or producto.get_material().lower() == dato.lower() or producto.get_color().lower() == dato.lower() or producto.get_piedra().lower() == dato.lower():
+            if (producto.get_nombre().lower() == dato.lower()
+                    or producto.get_marca().lower() == dato.lower()
+                    or producto.get_material().lower() == dato.lower()
+                    or producto.get_color().lower() == dato.lower()
+                    or producto.get_piedra().lower() == dato.lower()):
                 productos.append(producto)
         return productos
